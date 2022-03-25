@@ -1,7 +1,7 @@
 use gloo_timers::callback::Interval;
 use serde::{Deserialize, Serialize};
-use yew_agent::{HandlerId, Public, Agent, AgentLink};
-use yew_agent::Bridged;
+
+use yew_agent::{Agent, AgentLink, HandlerId, Public};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub enum Request {
@@ -13,8 +13,7 @@ pub enum Response {
     DataFetched,
 }
 
-pub enum Msg {
-}
+pub enum Msg {}
 
 pub struct Worker {
     link: AgentLink<Worker>,
@@ -31,17 +30,17 @@ impl Agent for Worker {
         let duration = 3;
 
         let interval = {
-            let link = link.clone();
+            let _link = link.clone();
             Interval::new(duration, move || {
                 let window = web_sys::window().expect("no global `window` exists");
                 let document = window.document().expect("should have a document on window");
                 let body = document.body().expect("document should have a body");
                 let classes = body.class_list();
-        
+
                 let array = js_sys::Array::new();
-        
+
                 array.push(&wasm_bindgen::JsValue::from_str("dark"));
-        
+
                 if classes.contains("dark") {
                     classes.remove(&array);
                 } else {
@@ -55,11 +54,9 @@ impl Agent for Worker {
         }
     }
 
-    fn update(&mut self, msg: Self::Message) {
-    }
+    fn update(&mut self, _msg: Self::Message) {}
 
-    fn handle_input(&mut self, msg: Self::Input, who: HandlerId) {
-    }
+    fn handle_input(&mut self, _msg: Self::Input, _who: HandlerId) {}
 
     fn name_of_resource() -> &'static str {
         "worker.js"
