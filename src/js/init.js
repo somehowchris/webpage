@@ -1,273 +1,3 @@
-/*
- * Copyright (c) 2022 Marketify
- * Author: Marketify
- * This file is made for CURRENT TEMPLATE
-*/
-
-jQuery(document).ready(function(){
-
-	"use strict";
-	
-	// here all ready functions
-	
-	dizme_tm_modalbox();
-	dizme_tm_nav_bg();
-	dizme_tm_trigger_menu();
-	dizme_tm_service_popup();
-	dizme_tm_modalbox_news();
-	dizme_tm_modalbox_portfolio();
-	progress_by_frenify();
-	dizme_tm_mycounter();
-	dizme_tm_projects();
-	dizme_tm_portfolio();
-	dizme_tm_cursor();
-	dizme_tm_imgtosvg();
-	dizme_tm_popup();
-	dizme_tm_data_images();
-	dizme_tm_contact_form();
-	dizme_tm_owl_carousel();
-	dizme_tm_input_padding();
-	dizme_tm_totop();
-	dizme_tm_down();
-	
-	jQuery(window).load('body', function(){
-		dizme_tm_my_load();
-	});
-	jQuery(window).on('scroll', function(){
-		dizme_tm_progress_line();
-	});
-	
-});
-
-// -----------------------------------------------------
-// ---------------   FUNCTIONS    ----------------------
-// -----------------------------------------------------
-
-// -----------------------------------------------------
-// --------------------   MODALBOX    ------------------
-// -----------------------------------------------------
-
-function dizme_tm_modalbox(){
-	
-	"use strict";
-	
-	jQuery('.dizme_tm_all_wrap').prepend('<div class="dizme_tm_modalbox"><div class="box_inner"><div class="close"><a href="#"><i class="icon-cancel"></i></a></div><div class="description_wrap"></div></div></div>');
-}
-
-// -------------------------------------------------
-// -------------   TOPBAR BG SCROLL  ---------------
-// -------------------------------------------------
-
-function dizme_tm_nav_bg(){
-	
-	"use strict";
-	
-	jQuery(window).on('scroll',function(){
-		var menu	 		= jQuery('.dizme_tm_header');
-		var progress	 	= jQuery('.progressbar');
-		var WinOffset		= jQuery(window).scrollTop();
-		
-		if(WinOffset >= 100){
-			menu.addClass('animate');
-			progress.addClass('animate');
-		}else{
-			menu.removeClass('animate');
-			progress.removeClass('animate');
-		}
-	});
-}
-
-// -----------------------------------------------------
-// ---------------   TRIGGER MENU    -------------------
-// -----------------------------------------------------
-
-function dizme_tm_trigger_menu(){
-	
-	"use strict";
-
-	var hamburger 		= jQuery('.trigger .hamburger');
-	var mobileMenu		= jQuery('.dizme_tm_mobile_menu .dropdown');
-	var mobileMenuList	= jQuery('.dizme_tm_mobile_menu .dropdown .dropdown_inner ul li a');
-
-	hamburger.on('click',function(){
-		var element 	= jQuery(this);
-
-		if(element.hasClass('is-active')){
-			element.removeClass('is-active');
-			mobileMenu.slideUp();
-		}else{
-			element.addClass('is-active');
-			mobileMenu.slideDown();
-		}
-		return false;
-	});
-	
-	mobileMenuList.on('click',function(){
-		jQuery('.trigger .hamburger').removeClass('is-active');
-		mobileMenu.slideUp();
-		return false;
-	});
-}
-
-// -------------------------------------------------
-// -------------  SERVICE POPUP  -------------------
-// -------------------------------------------------
-
-function dizme_tm_service_popup(){
-	
-	"use strict";
-	
-	var modalBox		= jQuery('.dizme_tm_modalbox');
-	var button			= jQuery('.dizme_tm_services .service_list ul li .dizme_tm_full_link');
-	var closePopup		= modalBox.find('.close');
-	
-	button.on('click',function(){
-		var element = jQuery(this);
-		var parent	= element.closest('.dizme_tm_services .service_list ul li');
-		var elImage	= parent.find('.popup_service_image').attr('src');
-		var title	= parent.find('.title').html();
-		var content = parent.find('.service_hidden_details').html();
-		modalBox.addClass('opened');
-		modalBox.find('.description_wrap').html(content);
-		modalBox.find('.service_popup_informations').prepend('<div class="image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+elImage+'"></div></div>');
-		dizme_tm_data_images();
-		modalBox.find('.service_popup_informations .image').after('<div class="main_title">'+title+'</div>');
-		return false;
-	});
-	closePopup.on('click',function(){
-		modalBox.removeClass('opened');
-		modalBox.find('.description_wrap').html('');
-		return false;
-	});
-}
-
-// -------------------------------------------------
-// -------------  MODALBOX NEWS  -------------------
-// -------------------------------------------------
-
-function dizme_tm_modalbox_news(){
-	
-	"use strict";
-	
-	var modalBox		= jQuery('.dizme_tm_modalbox');
-	var button			= jQuery('.dizme_tm_news .dizme_tm_full_link,.dizme_tm_news ul li .details .title a');
-	var closePopup		= modalBox.find('.close');
-	
-	button.on('click',function(){
-		var element 	= jQuery(this);
-		var parent 		= element.closest('.list_inner');
-		var content 	= parent.find('.news_hidden_details').html();
-		var image		= element.closest('.list_inner').find('.image .main').data('img-url');
-		var category	= parent.find('.details .category').html();
-		var title	 	= parent.find('.details .title a').text();
-		modalBox.addClass('opened');
-		modalBox.find('.description_wrap').html(content);
-		modalBox.find('.news_popup_informations').prepend('<div class="image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
-		modalBox.find('.news_popup_informations .image').after('<div class="details"><h3>'+title+'</h3><span>'+category+'</span><div>');
-		dizme_tm_data_images();
-		return false;
-	});
-	closePopup.on('click',function(){
-		modalBox.removeClass('opened');
-		modalBox.find('.description_wrap').html('');
-		return false;
-	});
-}
-
-// -------------------------------------------------
-// -------------  MODALBOX PORTFOLIO  --------------
-// -------------------------------------------------
-
-function dizme_tm_modalbox_portfolio(){
-	
-	"use strict";
-	
-	var modalBox		= jQuery('.dizme_tm_modalbox');
-	var button			= jQuery('.dizme_tm_portfolio .portfolio_popup');
-	var closePopup		= modalBox.find('.close');
-	
-	button.off().on('click',function(){
-		var element 	= jQuery(this);
-		var parent 		= element.closest('.inner');
-		var content	 	= parent.find('.hidden_content').html();
-		var image		= parent.find('.entry .main').data('img-url');
-		var category 	= parent.find('.entry').data('category');
-		var title	 	= parent.find('.entry').data('title');
-		modalBox.addClass('opened');
-		modalBox.find('.description_wrap').html(content);
-		modalBox.find('.popup_details').prepend('<div class="top_image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
-		modalBox.find('.popup_details .top_image').after('<div class="portfolio_main_title"><h3>'+title+'</h3><span><a href="#">'+category+'</a></span><div>');
-		dizme_tm_data_images();
-		return false;
-	});
-	closePopup.on('click',function(){
-		modalBox.removeClass('opened');
-		modalBox.find('.description_wrap').html('');
-		return false;
-	});
-}
-
-// -------------------------------------------------
-// -----------------    PORTFOLIO    ---------------
-// -------------------------------------------------
-
-// filterable 
-
-function dizme_tm_portfolio(){
-
-	"use strict";
-
-	if(jQuery().isotope) {
-
-		// Needed variables
-		var filter		 = jQuery('.dizme_tm_portfolio .portfolio_filter ul');
-
-		if(filter.length){
-			// Isotope Filter 
-			filter.find('a').on('click', function(){
-				var element		= jQuery(this);
-				var selector 	= element.attr('data-filter');
-				var list		= element.closest('.dizme_tm_portfolio').find('.portfolio_list').children('ul');
-				list.isotope({ 
-					filter				: selector,
-					animationOptions	: {
-						duration			: 750,
-						easing				: 'linear',
-						queue				: false
-					}
-				});
-				
-				filter.find('a').removeClass('current');
-				element.addClass('current');
-				return false;
-			});	
-		}
-	}
-}
-
-function dizme_tm_projects(){
-	
-	"use strict";
-	
-	jQuery('.dizme_tm_portfolio_animation_wrap').each(function() {
-		jQuery(this).on('mouseenter', function() {
-			if (jQuery(this).data('title')) {
-				jQuery('.dizme_tm_portfolio_titles').html(jQuery(this).data('title') + '<span class="work__cat">' + jQuery(this).data('category') + '</span>');
-				jQuery('.dizme_tm_portfolio_titles').addClass('visible');
-			}
-
-			jQuery(document).on('mousemove', function(e) {
-				jQuery('.dizme_tm_portfolio_titles').css({
-					left: e.clientX - 10,
-					top: e.clientY + 25
-				});
-			});
-		}).on('mouseleave', function() {
-			jQuery('.dizme_tm_portfolio_titles').removeClass('visible');
-		});
-	});
-}
-
 // -------------------------------------------------
 // -------------  PROGRESS BAR  --------------------
 // -------------------------------------------------
@@ -302,57 +32,21 @@ function progress_by_frenify(wrapper){
 	}
 	element.each(function() {
 		var pWrap = jQuery(this);
-		pWrap.find('.number').css({right:'100%'});
 		pWrap.waypoint({handler: function(){tdProgress(pWrap);},offset:'90%'});	
 	});
-}
-
-// -----------------------------------------------------
-// -----------------    TILT    ------------------------
-// -----------------------------------------------------
-
-jQuery('.tilt-effect').tilt({
-    maxTilt: 6,
-	easing: "cubic-bezier(.03,.98,.52,.99)",
-	speed: 500,
-	transition: true
-})
-
-// -----------------------------------------------------
-// ---------------   PRELOADER   -----------------------
-// -----------------------------------------------------
-
-function dizme_tm_preloader(){
-	
-	"use strict";
-	
-	var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
-	var preloader = $('#preloader');
-	
-	if (!isMobile) {
-		setTimeout(function() {
-			preloader.addClass('preloaded');
-		}, 800);
-		setTimeout(function() {
-			preloader.remove();
-		}, 2000);
-
-	} else {
-		preloader.remove();
-	}
 }
 
 // -----------------------------------------------------
 // -------------------    COUNTER    -------------------
 // -----------------------------------------------------
 
-function dizme_tm_mycounter(){
+function tm_mycounter(){
 	
 	"use strict";
 	
-	jQuery('.dizme_tm_counter').removeClass('stop');
+	jQuery('.tm_counter').removeClass('stop');
 	
-	jQuery('.dizme_tm_counter').each(function() {
+	jQuery('.tm_counter').each(function() {
 
 	var el		= jQuery(this);
 		el.waypoint({
@@ -372,22 +66,10 @@ function dizme_tm_mycounter(){
 }
 
 // -----------------------------------------------------
-// -----------------   MY LOAD    ----------------------
-// -----------------------------------------------------
-
-function dizme_tm_my_load(){
-	
-	"use strict";
-	
-	var speed	= 500;
-	setTimeout(function(){dizme_tm_preloader();},speed);
-}
-
-// -----------------------------------------------------
 // ------------------   CURSOR    ----------------------
 // -----------------------------------------------------
 
-function dizme_tm_cursor(){
+function tm_cursor(){
 	
     "use strict";
 	
@@ -414,7 +96,7 @@ function dizme_tm_cursor(){
 // ---------------    IMAGE TO SVG    ------------------
 // -----------------------------------------------------
 
-function dizme_tm_imgtosvg(){
+function tm_imgtosvg(){
 	
 	"use strict";
 	
@@ -444,139 +126,6 @@ function dizme_tm_imgtosvg(){
 	});
 }
 
-// -----------------------------------------------------
-// --------------------   POPUP    ---------------------
-// -----------------------------------------------------
-
-function dizme_tm_popup(){
-	
-	"use strict";
-
-	jQuery('.gallery_zoom').each(function() { // the containers for all your galleries
-		jQuery(this).magnificPopup({
-			delegate: 'a.zoom', // the selector for gallery item
-			type: 'image',
-			gallery: {
-			  enabled:true
-			},
-			removalDelay: 300,
-			mainClass: 'mfp-fade'
-		});
-
-	});
-	jQuery('.popup-youtube, .popup-vimeo').each(function() { // the containers for all your galleries
-		jQuery(this).magnificPopup({
-			disableOn: 700,
-			type: 'iframe',
-			mainClass: 'mfp-fade',
-			removalDelay: 160,
-			preloader: false,
-			fixedContentPos: false
-		});
-	});
-	
-	jQuery('.soundcloude_link').magnificPopup({
-	  type : 'image',
-	   gallery: {
-		   enabled: true, 
-	   },
-	});
-}
-
-// -----------------------------------------------------
-// ---------------   DATA IMAGES    --------------------
-// -----------------------------------------------------
-
-function dizme_tm_data_images(){
-	
-	"use strict";
-	
-	var data			= jQuery('*[data-img-url]');
-	
-	data.each(function(){
-		var element			= jQuery(this);
-		var url				= element.data('img-url');
-		element.css({backgroundImage: 'url('+url+')'});
-	});
-}
-
-// -----------------------------------------------------
-// ----------------    CONTACT FORM    -----------------
-// -----------------------------------------------------
-
-function dizme_tm_contact_form(){
-	
-	"use strict";
-	
-	jQuery(".contact_form #send_message").on('click', function(){
-		
-		var name 		= jQuery(".contact_form #name").val();
-		var email 		= jQuery(".contact_form #email").val();
-		var message 	= jQuery(".contact_form #message").val();
-		var subject 	= jQuery(".contact_form #subject").val();
-		var success     = jQuery(".contact_form .returnmessage").data('success');
-	
-		jQuery(".contact_form .returnmessage").empty(); //To empty previous error/success message.
-		//checking for blank fields	
-		if(name===''||email===''||message===''){
-			
-			jQuery('div.empty_notice').slideDown(500).delay(2000).slideUp(500);
-		}
-		else{
-			// Returns successful data submission message when the entered information is stored in database.
-			jQuery.post("modal/contact.php",{ ajax_name: name, ajax_email: email, ajax_message:message, ajax_subject: subject}, function(data) {
-				
-				jQuery(".contact_form .returnmessage").append(data);//Append returned message to message paragraph
-				
-				
-				if(jQuery(".contact_form .returnmessage span.contact_error").length){
-					jQuery(".contact_form .returnmessage").slideDown(500).delay(2000).slideUp(500);		
-				}else{
-					jQuery(".contact_form .returnmessage").append("<span class='contact_success'>"+ success +"</span>");
-					jQuery(".contact_form .returnmessage").slideDown(500).delay(4000).slideUp(500);
-				}
-				
-				if(data===""){
-					jQuery("#contact_form")[0].reset();//To reset form fields on success
-				}
-				
-			});
-		}
-		return false; 
-	});
-}
-
-// -----------------------------------------------------
-// ----------------    OWL CAROUSEL    -----------------
-// -----------------------------------------------------
-
-function dizme_tm_owl_carousel(){
-
-	"use strict";
-	
-	var carousel			= jQuery('.dizme_tm_testimonials .owl-carousel');
-	
-	var rtlMode	= false;
-
-	if(jQuery('body').hasClass('rtl')){
-		rtlMode = 'true';
-	}
-
-	carousel.owlCarousel({
-		loop: true,
-		items: 1,
-		lazyLoad: false,
-		margin: 0,
-		autoplay: true,
-		autoplayTimeout: 7000,
-		rtl: rtlMode,
-		dots: true,
-		nav: false,
-		navSpeed: false
-	});
-	dizme_tm_imgtosvg();
-}
-
 // -------------------------------------------------
 // -----------------  GRID MASONRY  ----------------
 // -------------------------------------------------
@@ -585,72 +134,16 @@ $('.grid').masonry({
 	itemSelector: '.grid-item',
 });
 
-// -------------------------------------------------
-// -------------  INPUT PADDING  -------------------
-// -------------------------------------------------
-
-function dizme_tm_input_padding(){
-	
-	"use strict";
-	
-	var inpText		= jQuery('.dizme_tm_subscribe .field input[type="text"]');
-	var inpSubmit	= jQuery('.dizme_tm_subscribe .field input[type="submit"]').outerWidth();
-
-	inpText.css({paddingRight:inpSubmit+30+'px'});
-	
-}
-
-// -----------------------------------------------------
-// ----------------    PROGRESS LINE    ----------------
-// -----------------------------------------------------
-
-function dizme_tm_progress_line(){
-	
-	"use strict";
-	
-	var line			= jQuery('.progressbar .line');
-	var documentHeight 	= jQuery(document).height();
-	var windowHeight 	= jQuery(window).height();
-	var winScroll 		= jQuery(window).scrollTop();
-	var value 			= (winScroll/(documentHeight-windowHeight))*100;
-	var position 		= value;
-
-	line.css('height',position+"%");
-}
-
-// -----------------------------------------------------
-// -------------------    TOTOP    ---------------------
-// -----------------------------------------------------
-
-function dizme_tm_totop(){
-  
-	"use strict";
-	
-	var text = $('.progressbar .text');
-	text.css({bottom: 105 + text.width()});
-	$(".progressbar a").on('click', function(e) {
-		e.preventDefault();    
-		$("html, body").animate({ scrollTop: 0 }, 'slow');
-		return false;
-	});
-	
-}
-
-// ------------------------------------------------
-// -------------------  ANCHOR --------------------
-// ------------------------------------------------
-
-jQuery('.anchor_nav').onePageNav();
 
 // -----------------------------------------------------
 // -----------------    DOWN    ------------------------
 // -----------------------------------------------------
 
-function dizme_tm_down(){
+function tm_down(){
 	
 	"use strict";
 	
-	var topbar	= jQuery('.dizme_tm_header').outerHeight();
+	var topbar	= jQuery('.tm_header').outerHeight();
 	
 	jQuery('.anchor').on('click',function(){
 		
@@ -669,14 +162,3 @@ function dizme_tm_down(){
 // -----------------------------------------------------
 
  new WOW().init();
-
-// -----------------------------------------------------
-// ------------    WAIT FOR IMAGES   -------------------
-// -----------------------------------------------------
-
-$('.portfolio_list').waitForImages().done(function() {
-    // All descendant images have loaded, now slide up.
-    $('.grid').masonry({
-		itemSelector: '.grid-item',
-	});
-});
