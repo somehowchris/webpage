@@ -1,69 +1,18 @@
-/*
- * Copyright (c) 2022 Marketify
- * Author: Marketify
- * This file is made for CURRENT TEMPLATE
-*/
-
-jQuery(document).ready(function(){
-
-	"use strict";
-	
-	// here all ready functions
-	
-	dizme_tm_modalbox();
-	dizme_tm_nav_bg();
-	dizme_tm_trigger_menu();
-	dizme_tm_service_popup();
-	dizme_tm_modalbox_news();
-	dizme_tm_modalbox_portfolio();
-	progress_by_frenify();
-	dizme_tm_mycounter();
-	dizme_tm_projects();
-	dizme_tm_portfolio();
-	dizme_tm_cursor();
-	dizme_tm_imgtosvg();
-	dizme_tm_popup();
-	dizme_tm_data_images();
-	dizme_tm_contact_form();
-	dizme_tm_owl_carousel();
-	dizme_tm_input_padding();
-	dizme_tm_totop();
-	dizme_tm_down();
-	
-	jQuery(window).load('body', function(){
-		dizme_tm_my_load();
-	});
-	jQuery(window).on('scroll', function(){
-		dizme_tm_progress_line();
-	});
-	
-});
-
 // -----------------------------------------------------
 // ---------------   FUNCTIONS    ----------------------
 // -----------------------------------------------------
 
-// -----------------------------------------------------
-// --------------------   MODALBOX    ------------------
-// -----------------------------------------------------
-
-function dizme_tm_modalbox(){
-	
-	"use strict";
-	
-	jQuery('.dizme_tm_all_wrap').prepend('<div class="dizme_tm_modalbox"><div class="box_inner"><div class="close"><a href="#"><i class="icon-cancel"></i></a></div><div class="description_wrap"></div></div></div>');
-}
 
 // -------------------------------------------------
 // -------------   TOPBAR BG SCROLL  ---------------
 // -------------------------------------------------
 
-function dizme_tm_nav_bg(){
+function tm_nav_bg(){
 	
 	"use strict";
 	
 	jQuery(window).on('scroll',function(){
-		var menu	 		= jQuery('.dizme_tm_header');
+		var menu	 		= jQuery('.tm_header');
 		var progress	 	= jQuery('.progressbar');
 		var WinOffset		= jQuery(window).scrollTop();
 		
@@ -81,13 +30,13 @@ function dizme_tm_nav_bg(){
 // ---------------   TRIGGER MENU    -------------------
 // -----------------------------------------------------
 
-function dizme_tm_trigger_menu(){
+function tm_trigger_menu(){
 	
 	"use strict";
 
 	var hamburger 		= jQuery('.trigger .hamburger');
-	var mobileMenu		= jQuery('.dizme_tm_mobile_menu .dropdown');
-	var mobileMenuList	= jQuery('.dizme_tm_mobile_menu .dropdown .dropdown_inner ul li a');
+	var mobileMenu		= jQuery('.tm_mobile_menu .dropdown');
+	var mobileMenuList	= jQuery('.tm_mobile_menu .dropdown .dropdown_inner ul li a');
 
 	hamburger.on('click',function(){
 		var element 	= jQuery(this);
@@ -109,81 +58,17 @@ function dizme_tm_trigger_menu(){
 	});
 }
 
-// -------------------------------------------------
-// -------------  SERVICE POPUP  -------------------
-// -------------------------------------------------
-
-function dizme_tm_service_popup(){
-	
-	"use strict";
-	
-	var modalBox		= jQuery('.dizme_tm_modalbox');
-	var button			= jQuery('.dizme_tm_services .service_list ul li .dizme_tm_full_link');
-	var closePopup		= modalBox.find('.close');
-	
-	button.on('click',function(){
-		var element = jQuery(this);
-		var parent	= element.closest('.dizme_tm_services .service_list ul li');
-		var elImage	= parent.find('.popup_service_image').attr('src');
-		var title	= parent.find('.title').html();
-		var content = parent.find('.service_hidden_details').html();
-		modalBox.addClass('opened');
-		modalBox.find('.description_wrap').html(content);
-		modalBox.find('.service_popup_informations').prepend('<div class="image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+elImage+'"></div></div>');
-		dizme_tm_data_images();
-		modalBox.find('.service_popup_informations .image').after('<div class="main_title">'+title+'</div>');
-		return false;
-	});
-	closePopup.on('click',function(){
-		modalBox.removeClass('opened');
-		modalBox.find('.description_wrap').html('');
-		return false;
-	});
-}
-
-// -------------------------------------------------
-// -------------  MODALBOX NEWS  -------------------
-// -------------------------------------------------
-
-function dizme_tm_modalbox_news(){
-	
-	"use strict";
-	
-	var modalBox		= jQuery('.dizme_tm_modalbox');
-	var button			= jQuery('.dizme_tm_news .dizme_tm_full_link,.dizme_tm_news ul li .details .title a');
-	var closePopup		= modalBox.find('.close');
-	
-	button.on('click',function(){
-		var element 	= jQuery(this);
-		var parent 		= element.closest('.list_inner');
-		var content 	= parent.find('.news_hidden_details').html();
-		var image		= element.closest('.list_inner').find('.image .main').data('img-url');
-		var category	= parent.find('.details .category').html();
-		var title	 	= parent.find('.details .title a').text();
-		modalBox.addClass('opened');
-		modalBox.find('.description_wrap').html(content);
-		modalBox.find('.news_popup_informations').prepend('<div class="image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
-		modalBox.find('.news_popup_informations .image').after('<div class="details"><h3>'+title+'</h3><span>'+category+'</span><div>');
-		dizme_tm_data_images();
-		return false;
-	});
-	closePopup.on('click',function(){
-		modalBox.removeClass('opened');
-		modalBox.find('.description_wrap').html('');
-		return false;
-	});
-}
 
 // -------------------------------------------------
 // -------------  MODALBOX PORTFOLIO  --------------
 // -------------------------------------------------
 
-function dizme_tm_modalbox_portfolio(){
+function tm_modalbox_portfolio(){
 	
 	"use strict";
 	
-	var modalBox		= jQuery('.dizme_tm_modalbox');
-	var button			= jQuery('.dizme_tm_portfolio .portfolio_popup');
+	var modalBox		= jQuery('.tm_modalbox');
+	var button			= jQuery('.tm_portfolio .portfolio_popup');
 	var closePopup		= modalBox.find('.close');
 	
 	button.off().on('click',function(){
@@ -197,7 +82,7 @@ function dizme_tm_modalbox_portfolio(){
 		modalBox.find('.description_wrap').html(content);
 		modalBox.find('.popup_details').prepend('<div class="top_image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
 		modalBox.find('.popup_details .top_image').after('<div class="portfolio_main_title"><h3>'+title+'</h3><span><a href="#">'+category+'</a></span><div>');
-		dizme_tm_data_images();
+		tm_data_images();
 		return false;
 	});
 	closePopup.on('click',function(){
@@ -213,21 +98,21 @@ function dizme_tm_modalbox_portfolio(){
 
 // filterable 
 
-function dizme_tm_portfolio(){
+function tm_portfolio(){
 
 	"use strict";
 
 	if(jQuery().isotope) {
 
 		// Needed variables
-		var filter		 = jQuery('.dizme_tm_portfolio .portfolio_filter ul');
+		var filter		 = jQuery('.tm_portfolio .portfolio_filter ul');
 
 		if(filter.length){
 			// Isotope Filter 
 			filter.find('a').on('click', function(){
 				var element		= jQuery(this);
 				var selector 	= element.attr('data-filter');
-				var list		= element.closest('.dizme_tm_portfolio').find('.portfolio_list').children('ul');
+				var list		= element.closest('.tm_portfolio').find('.portfolio_list').children('ul');
 				list.isotope({ 
 					filter				: selector,
 					animationOptions	: {
@@ -245,25 +130,25 @@ function dizme_tm_portfolio(){
 	}
 }
 
-function dizme_tm_projects(){
+function tm_projects(){
 	
 	"use strict";
 	
-	jQuery('.dizme_tm_portfolio_animation_wrap').each(function() {
+	jQuery('.tm_portfolio_animation_wrap').each(function() {
 		jQuery(this).on('mouseenter', function() {
 			if (jQuery(this).data('title')) {
-				jQuery('.dizme_tm_portfolio_titles').html(jQuery(this).data('title') + '<span class="work__cat">' + jQuery(this).data('category') + '</span>');
-				jQuery('.dizme_tm_portfolio_titles').addClass('visible');
+				jQuery('.tm_portfolio_titles').html(jQuery(this).data('title') + '<span class="work__cat">' + jQuery(this).data('category') + '</span>');
+				jQuery('.tm_portfolio_titles').addClass('visible');
 			}
 
 			jQuery(document).on('mousemove', function(e) {
-				jQuery('.dizme_tm_portfolio_titles').css({
+				jQuery('.tm_portfolio_titles').css({
 					left: e.clientX - 10,
 					top: e.clientY + 25
 				});
 			});
 		}).on('mouseleave', function() {
-			jQuery('.dizme_tm_portfolio_titles').removeClass('visible');
+			jQuery('.tm_portfolio_titles').removeClass('visible');
 		});
 	});
 }
@@ -301,8 +186,8 @@ function progress_by_frenify(wrapper){
 		element = jQuery('.dodo_progress');
 	}
 	element.each(function() {
-		var pWrap = jQuery(this);
-		pWrap.find('.number').css({right:'100%'});
+		var pWrap = jQuery(this);/* 
+		pWrap.find('.number').css({right:'100%'}); */
 		pWrap.waypoint({handler: function(){tdProgress(pWrap);},offset:'90%'});	
 	});
 }
@@ -322,7 +207,7 @@ jQuery('.tilt-effect').tilt({
 // ---------------   PRELOADER   -----------------------
 // -----------------------------------------------------
 
-function dizme_tm_preloader(){
+function tm_preloader(){
 	
 	"use strict";
 	
@@ -346,13 +231,13 @@ function dizme_tm_preloader(){
 // -------------------    COUNTER    -------------------
 // -----------------------------------------------------
 
-function dizme_tm_mycounter(){
+function tm_mycounter(){
 	
 	"use strict";
 	
-	jQuery('.dizme_tm_counter').removeClass('stop');
+	jQuery('.tm_counter').removeClass('stop');
 	
-	jQuery('.dizme_tm_counter').each(function() {
+	jQuery('.tm_counter').each(function() {
 
 	var el		= jQuery(this);
 		el.waypoint({
@@ -375,19 +260,19 @@ function dizme_tm_mycounter(){
 // -----------------   MY LOAD    ----------------------
 // -----------------------------------------------------
 
-function dizme_tm_my_load(){
+function tm_my_load(){
 	
 	"use strict";
 	
 	var speed	= 500;
-	setTimeout(function(){dizme_tm_preloader();},speed);
+	setTimeout(function(){tm_preloader();},speed);
 }
 
 // -----------------------------------------------------
 // ------------------   CURSOR    ----------------------
 // -----------------------------------------------------
 
-function dizme_tm_cursor(){
+function tm_cursor(){
 	
     "use strict";
 	
@@ -414,7 +299,7 @@ function dizme_tm_cursor(){
 // ---------------    IMAGE TO SVG    ------------------
 // -----------------------------------------------------
 
-function dizme_tm_imgtosvg(){
+function tm_imgtosvg(){
 	
 	"use strict";
 	
@@ -448,7 +333,7 @@ function dizme_tm_imgtosvg(){
 // --------------------   POPUP    ---------------------
 // -----------------------------------------------------
 
-function dizme_tm_popup(){
+function tm_popup(){
 	
 	"use strict";
 
@@ -487,7 +372,7 @@ function dizme_tm_popup(){
 // ---------------   DATA IMAGES    --------------------
 // -----------------------------------------------------
 
-function dizme_tm_data_images(){
+function tm_data_images(){
 	
 	"use strict";
 	
@@ -504,7 +389,7 @@ function dizme_tm_data_images(){
 // ----------------    CONTACT FORM    -----------------
 // -----------------------------------------------------
 
-function dizme_tm_contact_form(){
+function tm_contact_form(){
 	
 	"use strict";
 	
@@ -550,11 +435,11 @@ function dizme_tm_contact_form(){
 // ----------------    OWL CAROUSEL    -----------------
 // -----------------------------------------------------
 
-function dizme_tm_owl_carousel(){
+function tm_owl_carousel(){
 
 	"use strict";
 	
-	var carousel			= jQuery('.dizme_tm_testimonials .owl-carousel');
+	var carousel			= jQuery('.tm_testimonials .owl-carousel');
 	
 	var rtlMode	= false;
 
@@ -574,7 +459,7 @@ function dizme_tm_owl_carousel(){
 		nav: false,
 		navSpeed: false
 	});
-	dizme_tm_imgtosvg();
+	tm_imgtosvg();
 }
 
 // -------------------------------------------------
@@ -589,45 +474,27 @@ $('.grid').masonry({
 // -------------  INPUT PADDING  -------------------
 // -------------------------------------------------
 
-function dizme_tm_input_padding(){
+function tm_input_padding(){
 	
 	"use strict";
 	
-	var inpText		= jQuery('.dizme_tm_subscribe .field input[type="text"]');
-	var inpSubmit	= jQuery('.dizme_tm_subscribe .field input[type="submit"]').outerWidth();
+	var inpText		= jQuery('.tm_subscribe .field input[type="text"]');
+	var inpSubmit	= jQuery('.tm_subscribe .field input[type="submit"]').outerWidth();
 
 	inpText.css({paddingRight:inpSubmit+30+'px'});
 	
 }
 
 // -----------------------------------------------------
-// ----------------    PROGRESS LINE    ----------------
-// -----------------------------------------------------
-
-function dizme_tm_progress_line(){
-	
-	"use strict";
-	
-	var line			= jQuery('.progressbar .line');
-	var documentHeight 	= jQuery(document).height();
-	var windowHeight 	= jQuery(window).height();
-	var winScroll 		= jQuery(window).scrollTop();
-	var value 			= (winScroll/(documentHeight-windowHeight))*100;
-	var position 		= value;
-
-	line.css('height',position+"%");
-}
-
-// -----------------------------------------------------
 // -------------------    TOTOP    ---------------------
 // -----------------------------------------------------
 
-function dizme_tm_totop(){
+function tm_totop(){
   
 	"use strict";
-	
+	/* 
 	var text = $('.progressbar .text');
-	text.css({bottom: 105 + text.width()});
+	text.css({bottom: 105 + text.width()}); */
 	$(".progressbar a").on('click', function(e) {
 		e.preventDefault();    
 		$("html, body").animate({ scrollTop: 0 }, 'slow');
@@ -646,11 +513,11 @@ jQuery('.anchor_nav').onePageNav();
 // -----------------    DOWN    ------------------------
 // -----------------------------------------------------
 
-function dizme_tm_down(){
+function tm_down(){
 	
 	"use strict";
 	
-	var topbar	= jQuery('.dizme_tm_header').outerHeight();
+	var topbar	= jQuery('.tm_header').outerHeight();
 	
 	jQuery('.anchor').on('click',function(){
 		

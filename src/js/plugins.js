@@ -210,7 +210,7 @@
 
 		scrollTo: function(target, callback) {
 			var offset 		= $(target).offset().top;
-			var topbar		= jQuery('.dizme_tm_header').outerHeight();
+			var topbar		= jQuery('.tm_header').outerHeight();
 			var ww			= jQuery(window).width();
 			
 			if(ww >= 1040){
