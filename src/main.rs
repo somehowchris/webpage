@@ -11,7 +11,7 @@ const FULL_NAME: &str = "Christof Weickhardt";
 const NICK_NAME: &str = "Chris";
 const EMAIL_ADDRESS: &str = "christof@weickhardt.ch";
 const GITHUB_URL: &str = "https://github.com/somehowchris";
-const LINKEDIN_URL: &str = "https://ch.linkedin.com/in/christofweickhardt";
+const LINKEDIN_URL: &str = "https://linkedin.com/in/christofweickhardt";
 
 enum Msg {
     ToggleDarkMode,
@@ -59,6 +59,12 @@ impl Component for Model {
 
         true
     }
+    
+    fn rendered(&mut self, ctx: &Context<Self>, first_render: bool){
+        if first_render {
+            init::register();
+        }
+    }
 
     fn view(&self, _ctx: &Context<Self>) -> Html {
         html! {
@@ -68,10 +74,10 @@ impl Component for Model {
                         <div class="loader_line"></div>
                     </div>
                 </div>
-                <div class="dizme_tm_all_wrap" data-magic-cursor="show">
+                <div class="tm_all_wrap" data-magic-cursor="show">
                     {
                         html!{
-                            <div class="dizme_tm_mobile_menu">
+                            <div class="tm_mobile_menu">
                                 <div class="mobile_menu_inner">
                                     <div class="mobile_in">
                                         <div class="logo">
@@ -105,7 +111,7 @@ impl Component for Model {
 
                     {
                         html!{
-                            <div class="dizme_tm_header">
+                            <div class="tm_header">
                         <div class="container">
                             <div class="inner">
                                 <div class="logo">
@@ -130,8 +136,8 @@ impl Component for Model {
 
                     {
                         html!{
-                            <div class="dizme_tm_section" id="home">
-                        <div class="dizme_tm_hero">
+                            <div class="tm_section" id="home">
+                        <div class="tm_hero">
                             <div class="background" data-img-url="img/slider/1.jpg"></div>
                             <div class="container">
                                 <div class="content">
@@ -150,7 +156,7 @@ impl Component for Model {
                                             <p></p>
                                         </div>
                                         <div class="button">
-                                            <div class="dizme_tm_button">
+                                            <div class="tm_button">
                                                 <a class="anchor" href="#about"><span>{"About Me"}</span></a>
                                             </div>
                                             <div class="social">
@@ -175,7 +181,7 @@ impl Component for Model {
                                     </div>
                                 </div>
                             </div>
-                            <div class="dizme_tm_down">
+                            <div class="tm_down">
                                 <a class="anchor" href="#about">
                                     <svg width="26px" height="100%" viewBox="0 0 247 390" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                         style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
@@ -193,8 +199,8 @@ impl Component for Model {
 
                     {
                         html!{
-                            <div class="dizme_tm_section" id="about">
-                                <div class="dizme_tm_about">
+                            <div class="tm_section" id="about">
+                                <div class="tm_about">
                                     <div class="container">
                                         <div class="wrapper">
                                             <div class="left">
@@ -202,13 +208,13 @@ impl Component for Model {
                                                     <img src="img/me-sqr.png" alt="" style="border-radius: 12px" />
                                                     <div class="numbers year" style="opacity: 0.99;">
                                                         <div class="wrapper">
-                                                            <h3><span class="dizme_tm_counter" data-from="0" data-to="12" data-speed="2000">{0}</span></h3>
+                                                            <h3><span class="tm_counter" data-from="0" data-to="12" data-speed="2000">{0}</span></h3>
                                                             <span class="name">{"Years of"}<br />{"Experience"}</span>
                                                         </div>
                                                     </div>
                                                     <div class="numbers project" style="opacity: 0.99;">
                                                         <div class="wrapper">
-                                                            <h3><span class="dizme_tm_counter" data-from="0" data-to="6" data-speed="2000">{0}</span></h3>
+                                                            <h3><span class="tm_counter" data-from="0" data-to="6" data-speed="2000">{0}</span></h3>
                                                             <span class="name">{"Open-Source"} <br />{"Projects"}</span>
                                                         </div>
                                                     </div>
@@ -227,7 +233,7 @@ impl Component for Model {
                                                     DevOps, Artifical Intelligence and a lot more."}
                                                     </p>
                                                 </div>
-                                                <div class="dizme_tm_button wow fadeInUp" data-wow-duration="1s">
+                                                <div class="tm_button wow fadeInUp" data-wow-duration="1s">
                                                     <a class="anchor" href="#contact"><span>{"Hire Me"}</span></a>
                                                 </div>
                                             </div>
@@ -244,15 +250,15 @@ impl Component for Model {
                     {
                         html!{
 
-                            <div class="dizme_tm_section">
-                                <div class="dizme_tm_skills">
+                            <div class="tm_section">
+                                <div class="tm_skills">
                                     <div class="container">
                                         <div class="wrapper">
                                             <div class="left">
                                                 <br />
                                                 <br />
                                                 <br />
-                                                <div class="dizme_tm_main_title wow fadeInUp" data-wow-duration="1s" data-align="left">
+                                                <div class="tm_main_title wow fadeInUp" data-wow-duration="1s" data-align="left">
                                                     <span class="orangeText">{"You never known enough"}</span>
                                                     <h3>{"Choose your weapons wisely, but be realistic"}</h3>
                                                     <p>{"Most common methods for designing websites that work well on desktop is responsive and adaptive
@@ -289,7 +295,7 @@ impl Component for Model {
                                                 <br />
                                                 <br />
                                                 <br />
-                                                <div class="dizme_tm_main_title wow fadeInUp" data-wow-duration="1s" data-align="left">
+                                                <div class="tm_main_title wow fadeInUp" data-wow-duration="1s" data-align="left">
                                                     <span class="orangeText"><br /></span>
                                                     <h3><br /></h3>
                                                     <p><br /><br /><br /><br />
@@ -332,10 +338,10 @@ impl Component for Model {
                     {
                         html!{
 
-                            <div class="dizme_tm_section" id="service">
-                                <div class="dizme_tm_services">
+                            <div class="tm_section" id="service">
+                                <div class="tm_services">
                                     <div class="container">
-                                        <div class="dizme_tm_main_title" data-align="center">
+                                        <div class="tm_main_title" data-align="center">
                                             <span class="orangeText">{"Projects"}</span>
                                             <h3>{"What I Do for Clients"}</h3>
                                             <p>{"Most common methods for designing websites that work well on desktop is responsive and adaptive design"}
@@ -353,7 +359,7 @@ impl Component for Model {
                                                             <p>{"Web design refers to the design of websites that are displayed on the internet. It usually refers
                                                                 to the user experience aspects of website development"}</p>
                                                         </div>
-                                                        <a class="dizme_tm_full_link" href="#"></a>
+                                                        <a class="tm_full_link" href="#"></a>
                                                         <img class="popup_service_image" src="img/service/1.jpg" alt="" />
                                                         <div class="service_hidden_details">
                                                             <div class="service_popup_informations">
@@ -384,7 +390,7 @@ impl Component for Model {
                                                             <p>{"Web design refers to the design of websites that are displayed on the internet. It usually refers
                                                                 to the user experience aspects of website development"}</p>
                                                         </div>
-                                                        <a class="dizme_tm_full_link" href="#"></a>
+                                                        <a class="tm_full_link" href="#"></a>
                                                         <img class="popup_service_image" src="img/service/2.jpg" alt="" />
                                                         <div class="service_hidden_details">
                                                             <div class="service_popup_informations">
@@ -415,7 +421,7 @@ impl Component for Model {
                                                             <p>{"Web design refers to the design of websites that are displayed on the internet. It usually refers
                                                                 to the user experience aspects of website development"}</p>
                                                         </div>
-                                                        <a class="dizme_tm_full_link" href="#"></a>
+                                                        <a class="tm_full_link" href="#"></a>
                                                         <img class="popup_service_image" src="img/service/3.jpg" alt="" />
                                                         <div class="service_hidden_details">
                                                             <div class="service_popup_informations">
@@ -446,7 +452,7 @@ impl Component for Model {
                                                             <p>{"Web design refers to the design of websites that are displayed on the internet. It usually refers
                                                                 to the user experience aspects of website development"}</p>
                                                         </div>
-                                                        <a class="dizme_tm_full_link" href="#"></a>
+                                                        <a class="tm_full_link" href="#"></a>
                                                         <img class="popup_service_image" src="img/service/4.jpg" alt="" />
                                                         <div class="service_hidden_details">
                                                             <div class="service_popup_informations">
@@ -479,8 +485,8 @@ impl Component for Model {
 
                     {
                         html!{
-                            <div class="dizme_tm_section" style="margin-bottom:96px;">
-                                <div class="dizme_tm_subscribe">
+                            <div class="tm_section" style="margin-bottom:96px;">
+                                <div class="tm_subscribe">
                                     <div class="container">
                                         <div class="inner">
                                             <div class="background">
@@ -494,7 +500,7 @@ impl Component for Model {
                                                 </div>
                                                 <div class="right wow fadeInRight" data-wow-duration="1s">
                                                     <div class="field">
-                                                        <div class="dizme_tm_button">
+                                                        <div class="tm_button">
                                                             <a class="anchor" href={format!("mailto:{}", EMAIL_ADDRESS)}
                                                                 style="position:absolute; right:0;"><span>{"E-Mail Me"}</span></a>
                                                         </div>
@@ -514,8 +520,8 @@ impl Component for Model {
 
                     {
                         html!{
-                            <div class="dizme_tm_section">
-                                <div class="dizme_tm_copyright">
+                            <div class="tm_section">
+                                <div class="tm_copyright">
                                     <div class="container">
                                         <div class="inner">
                                             <div class="left wow fadeInLeft" data-wow-duration="1s">
