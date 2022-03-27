@@ -1,0 +1,21 @@
+mod about;
+mod contact;
+mod counter;
+mod cursor_pointer;
+mod footer;
+mod header;
+mod projects;
+mod scroll_progress_bar;
+mod skills;
+mod welcome;
+
+pub use about::*;
+pub use contact::*;
+pub use counter::*;
+pub use cursor_pointer::*;
+pub use footer::*;
+pub use header::*;
+pub use projects::*;
+pub use scroll_progress_bar::*;
+pub use skills::*;
+pub use welcome::*;
