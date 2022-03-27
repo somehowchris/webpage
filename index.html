@@ -6,6 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="Personal webpage of Christof Weickhardt">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#327ead"/>
 
 	<title>Christof Weickhardt</title>
 
@@ -16,47 +17,28 @@
 	<link rel="icon" type="image/png" href="icons/android-chrome-512x512.png" sizes="512x512">
 	<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
 
-	<link data-trunk rel="inline" href="src/css/plugins.css" />
-	<link data-trunk rel="inline" href="src/css/google-fonts.css" />
-	<link data-trunk rel="inline" href="src/css/dark.css" />
-	<link data-trunk rel="inline" href="src/css/style.css" />
+	<link data-trunk rel="inline" href="packages/webpage/src/css/plugins.css" />
+	<link data-trunk rel="inline" href="packages/webpage/src/css/google-fonts.css" />
+	<link data-trunk rel="inline" href="packages/webpage/src/css/dark.css" />
+	<link data-trunk rel="inline" href="packages/webpage/src/css/style.css" />
 
-	<link data-trunk rel="copy-dir" href="src/img/" />
-	<link data-trunk rel="copy-dir" href="src/css/font/" />
-	<link data-trunk rel="copy-dir" href="src/icons/" />
-	<link data-trunk rel="copy-file" href="src/manifest.webmanifest" />
+	<link data-trunk rel="copy-dir" href="packages/webpage/src/img/" />
+	<link data-trunk rel="copy-dir" href="packages/webpage/src/css/font/" />
+	<link data-trunk rel="copy-dir" href="packages/webpage/src/icons/" />
+	<link data-trunk rel="copy-file" href="packages/webpage/src/manifest.webmanifest" />
 
 	<link rel="manifest" href="manifest.webmanifest" />
 
 </head>
 
 <body>
-	<link data-trunk rel="inline" href="src/js/jquery.js" />
-	<link data-trunk rel="inline" href="src/js/plugins.js" />
-	<link data-trunk rel="inline" href="src/js/init.js" />
-	<link data-trunk rel="copy-file" href="src/sw.js" />
+	<!-- <link data-trunk rel="inline" href="packages/webpage/src/js/jquery.js" />
+	<link data-trunk rel="inline" href="packages/webpage/src/js/plugins.js" />
+	<link data-trunk rel="inline" href="packages/webpage/src/js/init.js" />-->
+	<link data-trunk rel="copy-file" href="packages/webpage/src/sw.js" /> 
 
-	<script>
-		const registerServiceWorker = async () => {
-			if ('serviceWorker' in navigator) {
-				try {
-					const registration = await navigator.serviceWorker.register(
-						'sw.js',
-					);
-					if (registration.installing) {
-						console.log('Service worker installing');
-					} else if (registration.waiting) {
-						console.log('Service worker installed');
-					} else if (registration.active) {
-						console.log('Service worker active');
-					}
-				} catch (error) {
-					console.error(`Registration failed with ${error}`);
-				}
-			}
-		};
-		registerServiceWorker();
-	</script>
+	<link data-trunk rel="rust" href="packages/webpage/Cargo.toml" data-wasm-opt="z" data-type="main" />
+    <link data-trunk rel="rust" href="packages/service-worker/Cargo.toml" data-wasm-opt="z" data-type="worker" />
 </body>
 
 </html>
