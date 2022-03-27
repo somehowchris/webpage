@@ -1,0 +1,9 @@
+[[hooks]]
+stage = "post_build"
+command = "sh"
+command_arguments = ["-c", "sed -i \"s/BUILD_HASH/$(echo \"$(cat $TRUNK_STAGING_DIR/index.html)$(date +%s)\" | md5sum | cut -d ' ' -f 1)/g\" $TRUNK_STAGING_DIR/sw.js"]
+
+[[hooks]]
+stage = "post_build"
+command = "bash"
+command_arguments = ["-c", "files=($(find $TRUNK_STAGING_DIR -type f -regex \"^.*$\" -printf \"'/%P',\"));escaped_files=$(echo \"${files[*]}\" | sed -e 's/[\\\\/&]/\\\\&/g');sed -i \"s/BUILT_FILES/$(echo $escaped_files)/g\" $TRUNK_STAGING_DIR/sw.js"]

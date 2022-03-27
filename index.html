@@ -1,39 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<head>
+<head>
 
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="description" content="Personal webpage of Christof Weickhardt">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Personal webpage of Christof Weickhardt">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Christof Weickhardt</title>
+	<title>Christof Weickhardt</title>
 
-		<link rel="shortcut icon" href="icons/favicon.ico">
-		<link rel="icon" type="image/png" href="icons/favicon-32x32.png" sizes="32x32">
-		<link rel="icon" type="image/png" href="icons/favicon-16x16.png" sizes="16x16">
-		<link rel="icon" type="image/png" href="icons/android-chrome-192x192.png" sizes="192x192">
-		<link rel="icon" type="image/png" href="icons/android-chrome-512x512.png" sizes="512x512">
-		<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+	<link rel="shortcut icon" href="icons/favicon.ico">
+	<link rel="icon" type="image/png" href="icons/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="icons/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="icons/android-chrome-192x192.png" sizes="192x192">
+	<link rel="icon" type="image/png" href="icons/android-chrome-512x512.png" sizes="512x512">
+	<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
 
-		<link data-trunk rel="inline" href="src/css/plugins.css" />
-		<link data-trunk rel="inline" href="src/css/google-fonts.css" />
-		<link data-trunk rel="inline" href="src/css/dark.css" />
-		<link data-trunk rel="inline" href="src/css/style.css" />
+	<link data-trunk rel="inline" href="src/css/plugins.css" />
+	<link data-trunk rel="inline" href="src/css/google-fonts.css" />
+	<link data-trunk rel="inline" href="src/css/dark.css" />
+	<link data-trunk rel="inline" href="src/css/style.css" />
 
-		<link data-trunk rel="copy-dir" href="src/img/" />
-		<link data-trunk rel="copy-dir" href="src/css/font/" />
-		<link data-trunk rel="copy-dir" href="src/icons/" />
-		<link data-trunk rel="copy-file" href="src/manifest.webmanifest" />
+	<link data-trunk rel="copy-dir" href="src/img/" />
+	<link data-trunk rel="copy-dir" href="src/css/font/" />
+	<link data-trunk rel="copy-dir" href="src/icons/" />
+	<link data-trunk rel="copy-file" href="src/manifest.webmanifest" />
 
-		<link rel="manifest" href="manifest.webmanifest" />
+	<link rel="manifest" href="manifest.webmanifest" />
 
-	</head>
+</head>
 
-	<body>
-		<link data-trunk rel="inline" href="src/js/jquery.js" />
-		<link data-trunk rel="inline" href="src/js/plugins.js"/>
-		<link data-trunk rel="inline" href="src/js/init.js"/>
-	</body>
+<body>
+	<link data-trunk rel="inline" href="src/js/jquery.js" />
+	<link data-trunk rel="inline" href="src/js/plugins.js" />
+	<link data-trunk rel="inline" href="src/js/init.js" />
+	<link data-trunk rel="copy-file" href="src/sw.js" />
+
+	<script>
+		const registerServiceWorker = async () => {
+			if ('serviceWorker' in navigator) {
+				try {
+					const registration = await navigator.serviceWorker.register(
+						'sw.js',
+					);
+					if (registration.installing) {
+						console.log('Service worker installing');
+					} else if (registration.waiting) {
+						console.log('Service worker installed');
+					} else if (registration.active) {
+						console.log('Service worker active');
+					}
+				} catch (error) {
+					console.error(`Registration failed with ${error}`);
+				}
+			}
+		};
+		registerServiceWorker();
+	</script>
+</body>
 
 </html>

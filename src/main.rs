@@ -7,14 +7,12 @@ pub mod utils;
 
 pub use utils::images::build_webp_url;
 
-use components::{Contact, CursorPointer, Footer, Header, PreLoader, ScrollProgressBar, About, Welcome, Skills, Projects};
-
-enum Msg {}
+use components::{Contact, CursorPointer, Footer, Header, ScrollProgressBar, About, Welcome, Skills, Projects};
 
 struct Model {}
 
 impl Component for Model {
-    type Message = Msg;
+    type Message = ();
     type Properties = ();
 
     fn create(_ctx: &Context<Self>) -> Self {
@@ -29,21 +27,18 @@ impl Component for Model {
 
     fn view(&self, _ctx: &Context<Self>) -> Html {
         html! {
-            <>
-                <PreLoader />
-                <div class="tm_all_wrap" data-magic-cursor="show">
-                    <Header />
-                    <Welcome />
-                    <About />
-                    <Skills />
-                    <Projects />
-                    <Contact />
-                    <Footer />
+            <div class="tm_all_wrap" data-magic-cursor="show">
+                <Header />
+                <Welcome />
+                <About />
+                <Skills />
+                <Projects />
+                <Contact />
+                <Footer />
 
-                    <CursorPointer />
-                    <ScrollProgressBar />
-                </div>
-            </>
+                <CursorPointer />
+                <ScrollProgressBar />
+            </div>
         }
     }
 }
