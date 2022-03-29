@@ -52,7 +52,8 @@ impl Counter {
         window
             .set_timeout_with_callback_and_timeout_and_arguments_0(
                 clear.as_ref().unchecked_ref(),
-                (ctx.props().time + ((ctx.props().time / (ctx.props().to - ctx.props().from))/2)).into(),
+                (ctx.props().time + ((ctx.props().time / (ctx.props().to - ctx.props().from)) / 2))
+                    .into(),
             )
             .unwrap();
         clear.forget();
