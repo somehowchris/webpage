@@ -52,7 +52,8 @@ impl Counter {
         window
             .set_timeout_with_callback_and_timeout_and_arguments_0(
                 clear.as_ref().unchecked_ref(),
-                (ctx.props().time + ((ctx.props().time / (ctx.props().to - ctx.props().from))/2)).into(),
+                (ctx.props().time + ((ctx.props().time / (ctx.props().to - ctx.props().from))))
+                    .into(),
             )
             .unwrap();
         clear.forget();
@@ -72,6 +73,7 @@ impl Component for Counter {
         let scroll_listener =
             EventListener::new(&window, "scroll", move |e| onscroll.emit(e.clone()));
 
+
         Self {
             counter: 0,
             show_counter: false,
@@ -81,13 +83,22 @@ impl Component for Counter {
             document,
         }
     }
+    
+    fn rendered(&mut self, ctx: &Context<Self>, first_render: bool) {
+        if first_render {
+            ctx.link().callback(|_: Option<u8>| Msg::Scroll).emit(None);
+        }
+    }
 
     fn update(&mut self, ctx: &Context<Self>, msg: Self::Message) -> bool {
         match msg {
             Msg::Increment => {
-                self.counter += 1;
+                if self.counter < ctx.props().to {
+                    self.counter += 1;
 
-                true
+                    return true;
+                }
+                return false;
             }
             Msg::Scroll => {
                 if !self.show_counter {

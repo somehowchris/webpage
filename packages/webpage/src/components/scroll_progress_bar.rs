@@ -57,6 +57,7 @@ impl Component for ScrollProgressBar {
                 self.progress =
                     ((scroll_top / (total_scroll_height - document_height)) * 100f64) as u32;
                 self.animate = scroll_top >= 100f64;
+                
                 true
             }
             Msg::InitText => {

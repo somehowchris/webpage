@@ -25,9 +25,9 @@ impl Component for Footer {
                                 <p>{"© All rights are reserved | 2022"}</p>
                             </div>
                             <div class="right wow fadeInRight" data-wow-duration="1s">
+                                <h3><br /></h3>
+                                <p><br /></p>
                                 <ul>
-                                    <h3><br /></h3>
-                                    <p><br /></p>
                                     <li><a href="#">{"Contact"}</a></li>
                                 </ul>
                             </div>

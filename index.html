@@ -17,14 +17,11 @@
 	<link rel="icon" type="image/png" href="icons/android-chrome-512x512.png" sizes="512x512">
 	<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
 
-	<link data-trunk rel="inline" href="packages/webpage/src/css/plugins.css" />
-	<link data-trunk rel="inline" href="packages/webpage/src/css/google-fonts.css" />
-	<link data-trunk rel="inline" href="packages/webpage/src/css/dark.css" />
-	<link data-trunk rel="inline" href="packages/webpage/src/css/style.css" />
+	<link data-trunk rel="inline" href="packages/webpage/src/assets/css/styles.css" />
 
-	<link data-trunk rel="copy-dir" href="packages/webpage/src/img/" />
-	<link data-trunk rel="copy-dir" href="packages/webpage/src/css/font/" />
-	<link data-trunk rel="copy-dir" href="packages/webpage/src/icons/" />
+	<link data-trunk rel="copy-dir" href="packages/webpage/src/assets/img/" />
+	<link data-trunk rel="copy-dir" href="packages/webpage/src/assets/css/font/" />
+	<link data-trunk rel="copy-dir" href="packages/webpage/src/assets/icons/" />
 	<link data-trunk rel="copy-file" href="packages/webpage/src/manifest.webmanifest" />
 
 	<link rel="manifest" href="manifest.webmanifest" />
@@ -32,9 +29,6 @@
 </head>
 
 <body>
-	<!-- <link data-trunk rel="inline" href="packages/webpage/src/js/jquery.js" />
-	<link data-trunk rel="inline" href="packages/webpage/src/js/plugins.js" />
-	<link data-trunk rel="inline" href="packages/webpage/src/js/init.js" />-->
 	<link data-trunk rel="copy-file" href="packages/webpage/src/sw.js" /> 
 
 	<link data-trunk rel="rust" href="packages/webpage/Cargo.toml" data-wasm-opt="z" data-type="main" />

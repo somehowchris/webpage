@@ -53,7 +53,7 @@ impl Component for Welcome {
                                     </div>
                                     <div class="social">
                                         <ul>
-                                            <li><a href={GITHUB_URL} target="_blank"><span style="color:transparent;line-height:0;font-size:0;">{"Github"}</span><img src="img/github.svg" style="height: 24px;top: -4px;position: relative;" class="icon-github-2" /></a></li>
+                                            <li><a href={GITHUB_URL} target="_blank"><span style="color:transparent;line-height:0;font-size:0;">{"Github"}</span><img src="img/github.svg" alt="github icon" style="height: 24px;top: -4px;position: relative;" class="icon-github-2" /></a></li>
                                             <li><a href={LINKEDIN_URL} target="_blank"><span style="color:transparent;line-height:0;font-size:0;">{"LinkedIn"}</span><i
                                                         class="icon-linkedin-4" style="font-size: 1.5em"></i></a></li>
                                         </ul>

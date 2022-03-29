@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-use super::Counter;
+use crate::components::Counter;
 use crate::utils::images::build_webp_url;
 
 pub struct About {}
